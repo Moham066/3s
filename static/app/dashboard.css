@@ -1,0 +1,178 @@
+@media only screen and (max-width: 600px) {
+
+    .stock,.commandes,.production,.employé{
+        position: relative;  
+        display: inline-block;
+        width: 100%;
+        height: 100px;
+        max-height: 100px;
+        max-width: 100%;
+        background: #c6cbefb4;
+        align-items: center;
+        text-align: center;
+        border-bottom: 1px solid;
+        border-color: black;
+
+        
+    }
+    .stock{
+        margin-left: 0px;
+    }
+    .content{
+        overflow: hidden;
+        z-index: -1;
+        }
+        
+        .stock h2,.commandes h2,.production h2,.employé h2{
+            color: #0d578bec;
+        }
+        
+        .stock button,.commandes button,.production button,.employé button{
+            display: inline-block;
+            color:black;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 5%;
+            border: 0px;
+            background: transparent;
+        }
+        
+        .stock button:hover,.commandes button:hover,.production button:hover,.employé button:hover{
+        cursor: pointer;
+        }
+        
+        .card-body{
+        display: block;    
+        max-width: 70%;
+        max-height: 500px;
+       
+        
+        }
+        
+        .card-body2{
+      
+        max-height: 100%;
+        height: 100%;
+        }
+        
+        #table_dash{
+            width: 100%;
+        }
+        
+        #table_dash td{
+        vertical-align: top; 
+        }
+    
+        #red_color{
+            color: red;
+            font-weight: bold;
+        }
+        #green_color{
+            color: green;
+            font-weight: bold;
+    
+        }
+        #submit_product{
+            margin-right: 5px;
+        }
+    
+        #select_produit{
+            max-width: 50%;
+        }
+    
+    
+
+}
+
+
+
+
+
+
+
+
+
+
+
+@media only screen and (min-width: 601px){
+
+
+.content{
+    overflow: hidden;
+    z-index: -1;
+    }
+    
+    .stock,.commandes,.production,.employé{
+        position: relative;  
+        display: inline-block;
+        width: 250px;
+        height: 100px;
+        max-height: 100px;
+        max-width: 250px;
+        background: #c6cbefb4;
+        align-items: center;
+        text-align: center;
+        
+    }
+    
+    .stock{
+        margin-left: 7%;
+    }
+    
+    .stock h2,.commandes h2,.production h2,.employé h2{
+        color: #0d578bec;
+    }
+    
+    .stock button,.commandes button,.production button,.employé button{
+        display: inline-block;
+        color:black;
+        font-weight: bold;
+        text-align: center;
+        margin-top: 5%;
+        border: 0px;
+        background: transparent;
+    }
+    
+    .stock button:hover,.commandes button:hover,.production button:hover,.employé button:hover{
+    cursor: pointer;
+    }
+    
+    .card-body{
+    display: block;    
+    max-width: 70%;
+    max-height: 500px;
+   
+    
+    }
+    
+    .card-body2{
+  
+    max-height: 100%;
+    height: 100%;
+    }
+    
+    #table_dash{
+        width: 100%;
+    }
+    
+    #table_dash td{
+    vertical-align: top; 
+    }
+
+    #red_color{
+        color: red;
+        font-weight: bold;
+    }
+    #green_color{
+        color: green;
+        font-weight: bold;
+
+    }
+    #submit_product{
+        margin-right: 5px;
+    }
+
+    #select_produit{
+        max-width: 50%;
+    }
+}

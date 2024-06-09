@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{% static 'app/base.css' %}">
+<link rel="stylesheet" href="{% static 'app/single_prod.css' %}">
+{% endblock stylesheets %}
+   
+{% block title %}
+<title>Production</title>
+{% endblock title %}
+
+{% block content %} 
+<div class="content_area">
+<form method="post">
+    {%csrf_token%}
+<label for="">Produit : </label>
+<input type="text" name="Produit" id="Produit" value="{{prod.nom}}" readonly>
+<label for="quantity">Quantité : </label>
+<input type="text" name="quantity" id="quantity" value="{{prod.quantite}}" readonly>
+
+<br>
+<br>
+<label for="">Produits requis : </label>
+<ul>
+{% for p in prod.produits_requis.all %}
+<li><a>Produit : {{p.produit.nom}} <span style="color:green"> - Quantité requise : {{p.quantite| floatformat:2}}</span></a></li>
+{% endfor %}
+</ul>
+<br><br>
+<label for="etat">Etat : </label>
+{% if prod.etat == 'Prêt' %}
+<a id="a_etatpret" class="a_etat">{{prod.etat}}</a>
+{%else%}
+<a id="a_etat" class="a_etat_">{{prod.etat}}</a>
+{% endif %}
+<br>
+<br>
+<label for="statut">Statut : </label>
+{% if prod.statut == 'A Produire' %}
+<a id="" class=""><i class='bx bxs-time'></i></a>
+{% endif %}
+{% if prod.statut == 'En cours' %}
+<a id="" class=""><i class='bx bx-revision'></i></a>
+{% endif %}
+{% if prod.statut == 'Terminé' %}
+<a id="" class=""><i class='bx bxs-check-square'></i></a>
+{% endif %}
+
+{% if prod.statut != 'Terminé' %}
+<select name="select_statut" id="">
+{% for st in status%}
+{% if st.0 == prod.statut %}
+<option value="{{st.0}}" selected="selected">{{st.0}}</option>
+{% else %}
+<option value="{{st.0}}">{{st.0}}</option>
+
+{% endif %}
+{%endfor%}
+</select>
+{% endif %}
+
+<br>
+<br>
+
+{% if prod.etat == 'Produits manquants' %}
+<label for="">Produits manquants : </label>
+<ul>
+{% for lp in produit_manquants %}
+<li><a>Produit : {{lp.nom}} <span style="color: red"> - Quantité disponible : {{lp.quantite| floatformat:2}}</span> <span style="color:green"> - Quantité manquante : {{lp.manquant| floatformat:2}} </span></a></li>
+{% endfor %}
+</ul>
+{% endif %}
+<br><br>
+<button type="submit" onclick="return confirm('Voulez vous sauvegarder ?')" name="sauvegarder" id="sauvegarder">Sauvegarder</button>
+<button type="submit" onclick="return confirm('Voulez vous supprimer ?')" name="supprimer" id="supprimer">Supprimer</button>
+
+</form>
+</div>
+
+
+
+{% endblock content%}

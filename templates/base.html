@@ -1,0 +1,124 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'app/assets/img/logo/logo.png' %}">
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    {% block stylesheets %}
+    <link rel="stylesheet" href="{% static 'app/base.css' %}">
+    {% endblock stylesheets %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   {% block title %}
+    <title>Dashboard</title>
+    {% endblock title %}
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.0/dist/JsBarcode.all.min.js"></script> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+ 
+</head>
+<body {% if message %} onload="showAlert()" {% endif %}>
+
+    <div class="wrapper">
+        <div class="section">
+            <div class="top_navbar">
+                <div class="hamburger">
+                    <a href="#">
+                        <i class="fas fa-bars"></i>
+                    </a>
+                              
+                </div>
+                <a class="a_notif" id="a_notif1"  href="/notifications/"> <i id="notif" class='bx bxs-bell'><span style="color: rgb(241, 14, 14); font-weight: bold;">{{notif_count}}</span> </i>   </a>
+                {% if user.is_superuser %}  
+                <a class="a_notif" href="/users/"><i class='bx bxs-cog'></i></a>
+                {%endif%}
+                <a class="a_notif" href="/logout"><i class='bx bx-log-out'></i></a> 
+            </div>
+             
+        </div>
+        <div class="sidebar">
+            <img id="logo_picture" src="{% static 'app/assets/logo.png' %}" >
+            <ul>
+               
+                <li>
+                    <a  id="active2" style="font-size: 12px;">
+                        <span class="icon"><i class='bx bxs-user'></i></span>
+                        {% if user.is_superuser %}<span class="item">Administrateur</span>{%else%}
+                        <span class="item" style="font-size: 4;">{{user.first_name}} {{user.last_name}}</span>{% endif %}
+                    </a>
+                </li>
+
+                <li>
+                    <a class="{% if active_link == 'dashboard' %}active{% endif %}" href="/dash/">
+                        <span class="icon"><i class='bx bxs-dashboard'></i></span>
+                        <span class="item">Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="{% if active_link == 'commercial' %}active{% endif %}" href="/commercial/">
+                        <span class="icon"><i class='bx bxs-purchase-tag'></i></span>
+                        <span class="item">Commercial</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="{% if active_link == 'presentoire' %}active{% endif %}" href="/presentoire/">
+                        <span class="icon"><i class='bx bxs-package'></i></span>
+                        <span class="item">Présentoire</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="{% if active_link == 'labo' %}active{% endif %}" href="/labo/">
+                        <span class="icon"><i class='bx bx-rotate-left'></i></span>
+                        <span class="item">Labo</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="{% if active_link == 'finance' %}active{% endif %}" href="/finance/">
+                        <span class="icon"><i class='bx bx-money'></i></span>
+                        <span class="item">Finance</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a class="{% if active_link == 'production' %}active{% endif %}" href="/production/">
+                        <span class="icon"><i class='bx bx-history'></i></span>
+                        <span class="item">Production</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a class="{% if active_link == 'impression' %}active{% endif %}" href="/impression/">
+                        <span class="icon"><i class='bx bxs-printer'></i></span>
+                        <span class="item">Impression</span>
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+        <div class="info">
+            {% block content%}    
+
+            {% endblock content %}
+        
+        </div>
+    </div>
+  <script>
+       var hamburger = document.querySelector(".hamburger");
+	hamburger.addEventListener("click", function(){
+		document.querySelector("body").classList.toggle("active");
+	})
+  </script>
+  <script>
+            const m = "{{ message }}"
+            function showAlert() {
+              alert(m);
+            }
+            </script>
+
+            
+{% block js%}    
+
+{% endblock js %}
+</body>
+</html>

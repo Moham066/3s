@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{% static 'app/base.css' %}">
+<link rel="stylesheet" href="{% static 'app/dashboard.css' %}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<script
+src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
+</script>
+{% endblock stylesheets %}
+   
+{% block title %}
+<title>Dashboard</title>
+{% endblock title %}
+
+{% block content %} 
+<div class="content">
+<form method="post">{% csrf_token %}
+
+<div class="stock"><button type="submit" name="produits">Produits</button> <br> <h2>{{count_products}}</h2></div>
+<div class="commandes"><button type="submit" name="commandes"disabled>Ventes</button> <br> <h2>{{count_ventes}}</h2></div>
+<div class="production"><button  name="production" disabled><i id="green_color" class='bx bx-up-arrow-circle'></i> Gain Aujourdhui</button><br> <h2 style="color:green">{{gain_auj | floatformat:2}} Da</h2></div>
+<div class="employé"><button name="employés" disabled><i id="red_color" class='bx bx-down-arrow-circle' ></i> Dépences aujourdhui</button> <br> <h2 style="color:red">{{dep_auj | floatformat:2}} Da</h2></div></form>
+<br>
+<ul>
+    {% for i in dico %}
+    <div class="alert alert-success" role="alert">
+        {{i.username}}  : {{i.gain| floatformat:2}} Da
+      </div>
+    {%endfor%}
+</ul>
+<a href="gains/"> Rapports par catégorie </a>
+<table id="table_dash">
+
+<td>
+    {% block chart2 %}
+<div class="card-body2">
+    <form method="post">{% csrf_token %}
+    <label for="select_produit">Produit</label>
+    <select name="select_produit" id="select_produit">
+        <option value="" selected disabled>Selectionez un produit</option>
+        {%for product in products%}
+        <option value="{{product.id}}">{{product.nom}}</option>
+        {%endfor%}
+    </select>
+    <button type="submit" name="submit_product" id="submit_product">Afficher</button></form>
+    <br>
+    <canvas id="myChart2" width="200" height="150"></canvas>
+    <script>
+        var ctx = document.getElementById('myChart2').getContext('2d');
+        var myChart1 = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: [{% for pr in pr_stat %} '{{ pr.date }}', {% endfor %}],
+        datasets: [{
+            label: 'Quantité de Produit {{ pr.nom }}',
+            data: [{% for pr in pr_stat %} '{{pr.quantity}}', {% endfor %}],
+            backgroundColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                    borderWidth: 1
+        }]
+            },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+        });
+    </script>
+</div>
+{% endblock chart2 %}
+</td>
+
+</table>
+
+
+
+
+
+
+
+
+</div>
+
+{%endblock content%}
+
+{% block js%}
+
+{%endblock js%}

@@ -1,0 +1,163 @@
+
+
+.selection_bar{
+    width: 100%;
+    height: 50px;
+    background:#C6CBEF ;
+    display: inline-block;
+    vertical-align:middle;
+    text-align: end;
+    overflow-y: hidden ;
+    
+    }
+    
+    .selection_bar p{
+        text-align: left;
+        width: 20%; 
+        display: inline-block;  
+        margin: 0px; 
+        margin-right: 75%;
+        font-weight: bold;
+    }
+    
+   
+    
+ 
+    
+    .content_area{
+        margin: 10px 20px;
+        width: 96%;
+        height: 500px;
+        background:#C6CBEF ;
+        scrollbar-width: thin;
+        overflow: scroll;
+    
+    }
+    
+    .content_area #button_new{
+        display: inline-block;
+        padding: 10px 20px;
+        background:#0d568b ;
+        color: black; 
+        border: 0px;   
+    }
+    
+    .content_area .content_table{
+        width: 100%;
+    }
+    
+    #id_t{width: 20px;}
+    #statut_t{width: 20px;}
+    #etat_t{width: 200px;}
+    #detaills_t{width: 100px;}
+    
+    
+    #content_table tbody tr:nth-child(even){
+        background-color: #16213e1e
+    
+      }
+    
+    #content_table thead th{
+        height: 30px;
+        background: #f7d55ac7  ;
+        border: 0px;
+        color: black;
+        padding: 5px ;
+    
+      }
+      
+    
+    
+    
+     #content_table tbody tr td{
+        text-align: center;
+        padding-top: 10px;
+        padding-bottom: 10px ;
+        padding-left: 5px;
+        padding-right: 5px;
+        max-width: 90px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    
+      }
+    
+      #a_etat{
+          padding: 5px 5px;
+          border-radius: 5px;
+          background: red;
+          width: 150px;
+          display: inline-block;
+      }
+    
+      #a_etatpret{
+        padding: 5px 5px;
+        border-radius: 5px;
+        background: green;
+        width: 150px;
+        display: inline-block;
+    }
+    
+      
+      .bg-modal {
+        background-color: rgba(0, 0, 0, 0.8);
+        width: 85%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        display: none;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .modal-contents {
+        height: 300px;
+        width: 700px;
+        background-color: white;
+        text-align: left;
+        padding: 20px;
+        position: relative;
+        border-radius: 4px;
+        overflow-y: scroll;
+    }
+    
+    .modal-contents input[type=text],[type=number],[type=date],select {
+        margin: 5px 10px;
+        display: inline;
+        width: 60%;
+        padding: 8px;
+        border: 1px solid gray;
+    }
+    
+    .modal-contents input[type=button]{
+        padding: 5px;
+    }
+
+   
+    
+    .modal-contents button{
+        display: inline-block;
+        background: #0d568b;
+        padding: 10px 20px;
+        border: 0.5px solid gray;
+        color: black;
+        margin-left: 40%;
+        margin-top: 10px;
+    
+    }
+    
+    .modal-contents .close {
+        position: absolute;
+        top: 0;
+        right: 10px;
+        font-size: 42px;
+        color: #333;
+        transform: rotate(45deg);
+        cursor: pointer;
+    }
+    
+    .modal-contents .close:hover {
+        color: #666;
+    }
+    
+    

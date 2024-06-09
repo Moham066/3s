@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load static %}
+  {% block title %}
+    <title>Ventes</title>
+    {% endblock title %}
+
+{% block content %}
+
+
+<table id="myTable">
+<thead> 
+  <tr>
+    <th>id</th>
+    <th>Date</th>
+    <th>Montant</th>
+    <th></th>
+  
+  </tr>
+</thead>
+<tbody> 
+  {% for v in ventes reversed  %}
+    <tr>
+      <form action={{v.id}}>
+      <td><input type="text" value=Vente({{v.id}}) readonly></td>
+      <td class="produit_name">{{v.date_commande}}</td>
+      <td>{{v.tt_prix| floatformat:2}} Da</td>
+      <td><button type="submit" name="action" value="details"><i class='bx bxs-detail'></i> Détails</button></td> </form>
+    </tr>
+    
+  {% endfor %}  
+
+</tbody> 
+</table>
+
+
+</div>
+
+</div>    
+
+
+
+
+{% endblock content %}
+
+{% block js%}
+<script src="{% static 'app/script.js' %}"></script>
+
+<script>
+function openPopup() {
+    document.getElementById("popup").style.display = "block";
+}
+
+function closePopup() {
+    document.getElementById("popup").style.display = "none";
+}
+</script>
+
+
+{% endblock js %}

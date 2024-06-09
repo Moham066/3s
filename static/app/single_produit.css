@@ -1,0 +1,63 @@
+
+  /* *************BASE************* */
+
+
+  .wrapper .main_content .info form{
+    overflow: hidden;
+    margin: 20px;
+    
+
+  }
+  
+  input[type=text],[type=number],[type=date], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  #Sauvegarder{
+    width: 70%;
+    background-color: #0d578bec;
+    color: #bdb8d7;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 15%;
+  }
+
+  #Supprimer{
+    width: 70%;
+    background-color: #db0000ec;
+    color: #bdb8d7;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 15%;
+  }
+  
+  #Sauvegarder:hover {
+    background-color: #0d578bf3;
+    color: white;
+  }
+  
+  #Supprimer:hover {
+    background-color: #db0000da;
+    color: white;
+  }
+  
+  #textarea{
+    padding: 12px 20px;
+    margin: 8px 5px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }

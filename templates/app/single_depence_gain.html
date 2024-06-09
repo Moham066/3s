@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{% static 'app/base.css' %}">
+<link rel="stylesheet" href="{% static 'app/single_depence_gain.css' %}">
+{% endblock stylesheets %}
+   
+{% block title %}
+<title>Finance</title>
+{% endblock title %}
+
+{% block content %} 
+
+<div class="content_area">
+<form method="post">
+    {%csrf_token%}
+    {% for depgain in depgain%}
+<label for="select_type">Type : </label>
+<select name="select_type" id="select_type">
+{% for type in types %}
+{% if depgain.type == type.0  %}
+<option value="{{type.0}}" selected>{{type.0}}</option>
+{%else%}    
+<option value="{{type.0}}">{{type.0}}</option>
+{%endif%}
+{%endfor%}
+</select>
+<br>
+<label for="date">Date : </label>
+<input type="text" id="date" value="{{depgain.date}} {{depgain.heure|time:'H:i' }}" readonly>
+<br>
+<label for="motif">Motif : </label>
+<input type="text" name="motif" id="motif" value="{{depgain.motif}}" >
+<br>
+<label for="montant">Montant : </label>
+<input type="number" name="montant" id="montant" value="{{depgain.montant | floatformat:2}}" >
+<br>
+
+<label for="par">Par : </label>
+<input type="text" name="par" id="par" value="{{depgain.by}}" readonly>
+<br>
+
+<button type="submit" onclick="return confirm('Voulez vous sauvegarder ?')" name="sauvegarder" id="sauvegarder">Sauvegarder</button>
+<button type="submit" onclick="return confirm('Voulez vous supprimer ?')" name="supprimer" id="supprimer">Supprimer</button>
+{% endfor %}
+</form>
+</div>
+
+
+
+{% endblock content%}

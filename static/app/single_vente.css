@@ -1,0 +1,66 @@
+
+
+.info .content_area{
+    background: #C6CBEF;
+    margin-left: 10% ;
+    margin-right: 10%;
+    margin-top: 20px;
+    padding: 10px 20px;
+    width: 80%;
+    }
+    
+    .content_area input,select{
+    
+        margin: 5px 10px;
+        display: inline;
+        width: 30%;
+        padding: 8px;
+        border: 1px solid gray;
+    }
+    
+    .content_area a{
+        margin: 5px 10px;
+        display: inline;
+        width: 30%;
+        padding: 8px;
+    
+    }
+    
+    .content_area ul{
+    text-shadow: 0 1px 0 rgba(255,255,255,.5);
+    }
+    .content_area ul a{
+        width: auto;
+        position: relative;
+        display: block;
+        padding: .4em .4em .4em .8em;
+        margin: .5em 0 .5em 2.5em;
+        background: #D3D4DA;
+        color: #444;
+        text-decoration: none;
+    }
+    
+    .a_etat{background: green;}
+    .a_etat_{background: red;}
+    
+    .content_area button{
+        display: inline-block;
+        background: #0d568b;
+        padding: 10px 20px;
+        border: 0.5px solid gray;
+        color: black;
+        margin-left: 40%;
+        margin-top: 10px;
+        width: 150px;
+    
+    }
+    
+    #supprimer{
+        background:red;   
+    }
+
+    #p_produits{
+        background: white ;
+        padding: 5px 10px ;
+        margin: 5px;
+    }

@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{% static 'app/base.css' %}">
+<link rel="stylesheet" href="{% static 'app/notifications.css' %}">
+{% endblock stylesheets %}
+   
+{% block title %}
+<title>Notifications</title>
+{% endblock title %}
+
+{% block content %} 
+
+
+<div class="selection_bar">
+    <p><i class='bx bx-rotate-left'></i> Centre de notifications</p>  
+    <form method="post">{%csrf_token%}<button id="button_new" type="submit" name="lu"><i class='bx bx-check'></i>Marquer comme lu</button>
+        <button id="button_new" type="submit"><i class='bx bx-trash' ></i>Supprimer tout</button>
+            </form>
+</div>
+
+<div class="content_area">
+
+  <table>
+<tbody>
+    {% for n in notifs reversed %}
+    {% if n.etat == "Lu" %}
+<tr>
+    <td id="content"><i style="color: green;" class='bx bx-notification'></i>  {{n.content}}</td>
+</tr>
+{% else %}
+<tr>
+    <td id="content"><i style="color: red;" class='bx bx-notification'></i>  {{n.content}}</td>
+</tr>
+{% endif %}
+    {% endfor %}
+</tbody>
+
+  </table>
+
+</div>
+
+
+
+
+{%endblock content%}
+
+{% block js%}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> 
+<script>
+document.getElementById('button_new').addEventListener("click", function() {
+document.querySelector('.bg-modal').style.display = "flex";
+});
+
+document.querySelector('.close').addEventListener("click", function() {
+document.querySelector('.bg-modal').style.display = "none";
+});
+
+function ajout_produits() {
+ 
+ var e = document.getElementById("select_products");
+ var value=e.options[e.selectedIndex].text;
+ var v=e.options[e.selectedIndex].value;
+ var d = document.getElementById("quantity");
+ var val = d.value
+ html='<div class="inpt">\
+         <input type="text" name="pruduct_item" id="pruduct_item" value="'+value+'">\
+         <input type="number" name="item_quantity" id="item_quantity" value="'+val+'">\
+         <input type="hidden" name="item_id" id="item_id" value="'+v+'">\
+         <input type="button" class="remove-field" name="remove-field" id="remove-field" value="X" ">\
+     </div> '
+ 
+ var form = document.getElementById("the_div");
+ form.innerHTML += html;
+ 
+}
+
+ $(document).on("click", "#remove-field", function(){
+ $(this).parent('div').remove();
+ });;
+
+; 
+
+
+
+
+   </script>
+{%endblock js%}

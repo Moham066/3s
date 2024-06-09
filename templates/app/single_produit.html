@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{% static 'app/single_produit.css' %}">
+<link rel="stylesheet" href="{% static 'app/base.css' %}">
+
+{% endblock stylesheets %}
+
+{% block title %}
+<title>Produit détaills</title>
+{% endblock title %}
+
+            {% block content %}
+                <form method="post">
+                    {% csrf_token %}
+                   
+                  <label for="produit_name">Produit</label><br>
+                  <input type="text" id="produit_name" name="nom" value="{{produit.nom}}" required><br>
+                  
+            
+            
+                  <label for="produit_price"> Prix (da)</label><br>
+                  <input type="number" id="produit_price" name="prix" value={{produit.prix | floatformat:2 }}  required><br>
+
+                  <label for="select_category">Catégorie</label><br>
+                  <select name="categorie" id="select_category">
+                    {% for ct in categories%}
+                    {% if ct == produit.categorie %}
+                    <option value="{{ct}}" selected>{{ct}}</option>
+                    {% else %}
+                    <option value="{{ct}}">{{ct}}</option>
+                    {% endif %}
+                    {%endfor%}
+                    </select><br>
+                  
+
+                  <label for="produit_last_add">Derniere ajout</label><br>
+                  <input type="text" id="produit_last_add" name="produit_last_add" value="{{produit.date_dernier_ajout}}" readonly><br>
+
+                  <label for="produit_quantity">Quantité</label><br>
+                  <input type="number" id="produit_quantity" name="quantite" value={{produit.quantite}} required><br>
+                  
+                  <label for="produit_min">Quantité minimale obligatoire</label><br>
+                  <input type="number" id="produit_min" name="min" value={{produit.minimum}} required><br>
+
+                  <label for="prix_achat"> Prix d'ahat (da)</label><br> 
+                  <input value={{produit.prix_achat}} type="number" id="prix_achat" name="prix_achat" step="any" required><br> 
+                  
+                  <input type="hidden" name="id" value="{{produit.id}}" ><br>
+
+                  <input type="submit" id="Sauvegarder" name="Sauvegarder" value="Sauvegarder">
+                  </form>
+                  <form method="post">{% csrf_token %}  
+                    <input type="hidden" name="id" value="{{produit.id}}" >    
+                  <input type="submit" id="Supprimer" name="Supprimer" value="Supprimer">
+                  </form>
+              
+        {% endblock content %}

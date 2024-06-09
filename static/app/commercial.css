@@ -1,0 +1,392 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+*{
+list-style: none;
+text-decoration: none;
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+font-family: 'Open Sans', sans-serif;
+scrollbar-width: none;
+
+}
+
+body{
+background: #f5f6fa;
+scrollbar-width: none;
+}
+
+.wrapper .sidebar{
+background: #16213e;
+position: fixed;
+top: 0;
+left: 0;
+width: 225px;
+height: 100%;
+padding: 20px 0;
+transition: all 0.5s ease;
+}
+
+.wrapper .sidebar .profile{
+margin-bottom: 30px;
+text-align: center;
+}
+
+.wrapper .sidebar .profile img{
+display: block;
+width: 100px;
+height: 100px;
+border-radius: 50%;
+margin: 0 auto;
+}
+
+.wrapper .sidebar .profile h3{
+color: #ffffff;
+margin: 10px 0 5px;
+}
+
+.wrapper .sidebar .profile p{
+color: rgb(206, 240, 253);
+font-size: 14px;
+}
+
+.wrapper .sidebar ul li a{
+display: block;
+padding: 13px 30px;
+border-bottom: 1px solid #10558d;
+color: rgb(241, 237, 237);
+font-size: 16px;
+position: relative;
+}
+
+.wrapper .sidebar ul li a .icon{
+color: #dee4ec;
+width: 30px;
+display: inline-block;
+}
+
+
+
+.wrapper .sidebar ul li a:hover,
+.wrapper .sidebar ul li a.active{
+color: #0c7db1;
+
+background:white;
+border-right: 2px solid rgb(5, 68, 104);
+}
+
+.wrapper .sidebar ul li a:hover .icon,
+.wrapper .sidebar ul li a.active .icon{
+color: #0c7db1;
+}
+
+.wrapper .sidebar ul li a:hover:before,
+.wrapper .sidebar ul li a.active:before{
+display: block;
+}
+
+.wrapper .section{
+width: calc(100% - 225px);
+margin-left: 225px;
+transition: all 0.5s ease;
+}
+
+.wrapper .section .top_navbar{
+background:#16213e;
+height: 50px;
+display: flex;
+align-items: center;
+padding-left: 5px;
+}
+
+.wrapper .section .top_navbar .hamburger a{
+font-size: 28px;
+color: #f4fbff;
+}
+
+.wrapper .section .top_navbar .a_notif{
+
+  font-size: 22px;
+  color: #f4fbff;
+  margin-left: 10px;
+
+}
+
+
+.wrapper .section .top_navbar .hamburger a:hover{
+color: #a2ecff;
+}
+
+.wrapper .info {
+  width: calc(100% - 225px);
+  margin-left: 225px;
+  transition: all 0.5s ease;
+  height: 100%;
+
+}
+
+#logo_picture{
+  max-width: 200px;
+  max-height: 50px;
+}
+
+
+
+
+
+
+body.active .wrapper .sidebar{
+left: -225px;
+}
+
+body.active .wrapper .section{
+margin-left: 0;
+width: 100%;
+}
+
+body.active .wrapper .info{
+  margin-left: 0;
+  width: 100%;
+  }
+
+#a_notif1 {
+  margin-left: 80%;
+}
+
+
+/* _______________________________________*/
+
+
+
+
+
+
+
+
+.info{
+    overflow: auto;
+    margin-top: 0px;
+    padding: 5px 0;
+    display: grid;
+    grid-template-columns: 50% auto; 
+  }
+  
+   
+  
+  .info .left_part{
+        border-right: 1px solid black;
+        overflow-x: auto;
+    }
+
+ .info .infoDiv2{
+        display: grid;
+    }
+    #confirmation{
+        margin-top: 10px;
+        margin-left: 75%;
+        padding: 5px;
+        background: #0d568b;
+        color: #bdb8d7;
+        border: 0px;
+    }
+    #print{
+      margin-top: 10px;
+      margin-left: 75%;
+      padding: 5px;
+      background: #0d568b;
+      color: #bdb8d7;
+      border: 0px;
+  }
+  #print:hover{
+    color: white;
+}
+    #confirmation:hover{
+        color: white;
+    }
+
+    #cmd{
+        color: #0d568b  ;
+        font-size: larger;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    #total{
+        margin-top: 10px;
+        margin-left: 60%;
+    }
+    #valeur{
+        margin-left: 60%; 
+    }
+  /* *************BASE************* */
+  
+  
+  .info table{
+    width: 100%;
+    max-width: 100%;
+    border-collapse: collapse;
+    table-layout: auto;
+  }
+  
+ .info table tbody tr:nth-child(even){
+      background-color: #16213e1e
+  
+    }
+  
+ .info table thead th{
+      height: 30px;
+      background: #f7d55ac7 ;
+      border: 0px;
+      color: black;
+      padding: 5px ;
+  
+    }
+    
+    
+  
+  
+.info table tbody td{
+      text-align: center;
+      padding-top: 10px;
+      padding-bottom: 10px ;
+      padding-left: 2px;
+      padding-right: 2px;
+      overflow: hidden;
+      text-overflow: clip;
+      white-space: nowrap;
+  
+    }
+
+  #produit_name{
+      max-width: 100px;
+      overflow: auto;
+    }
+  
+    
+  
+.info table tbody td button{
+      transition-duration: 0.4s;
+      padding: 2px 4px;
+      border-radius: 5px;
+      border: 0.5px solid #161816ef;
+      
+  
+  
+    }
+  
+.info table tbody td button:hover{
+      background-color: #0d568b; 
+      color: white;
+  
+    }
+  
+  
+    .search_box{
+      margin: 5px 20px;
+      padding: 10px 20px;
+  
+  
+    }
+  
+    #search_input{
+        padding: 10px;
+        width: 400px;
+    }
+  
+    .search_box button{
+      padding: 10px;
+      background: #0d578bec;
+      color: #bdb8d7;
+      border: 1px white solid;
+    }
+  
+  
+  
+    .search_box button:hover{
+      color: #fff;
+  
+    }
+  
+  
+    
+    #btn_ajouterproduit{
+      
+      margin-left: 30%;
+    }
+  
+  
+.info table tbody td input{
+      background: transparent;
+      border: 0px;
+      text-align: center;
+  
+  
+    }
+  
+    .popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: rgba(0, 0, 0, 0.5);
+      width: 400px;
+      height: 400px;
+      background-color: #16213e;
+  
+  }
+  
+  .popup-content {
+      background-color: transparent;
+      padding: 20px;
+      border-radius: 5px;
+      color: #bdb8d7;
+  }
+  
+  .close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      cursor: pointer;
+  }
+  
+#quant{
+  max-width: 30px;
+}
+  
+  #ajouter{
+    width: 40%;
+    background-color: #0d578bec;
+    color: #bdb8d7;
+    padding: 14px 20px;
+    margin: 15px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 30%;
+  }
+  
+  #ajouter:hover{
+    color: white;
+  }
+  
+  #close{
+    color: red;
+  }
+
+
+  input[type=number]::-webkit-inner-spin-button, 
+  input[type=number]::-webkit-outer-spin-button { 
+      -webkit-appearance: none; /* Désactiver les styles par défaut */
+      margin: 0; /* Supprimer la marge par défaut */
+  }
+
+  input[type=number] {
+      -moz-appearance: textfield; /* Firefox ne prend pas en charge -webkit */
+      appearance: textfield; /* Style comme un champ de texte */
+  }
+
+  #infoDiv3,#infoDiv4 {
+    display: none;
+  
+  }

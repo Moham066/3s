@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+<title>Utilisateurs</title>
+{% endblock title %}
+
+{% block content %}
+<div id="popup" class="popup">
+    <div class="popup-content">
+        <span class="close" id="close" onclick="closePopup()">&times;</span>
+        <form method="post">
+            {% csrf_token %}
+           
+          <label for="name">Nom</label><br> 
+          <input type="text" id="name" name="name"  required><br> 
+          
+    
+    
+          <label for="l_name"> Prénom </label><br> 
+          <input type="text" id="l_name" name="l_name" required><br> 
+
+          <label for="email">Nom d'utilisateur</label><br> 
+          <input type="text" id="email" name="email" required><br>
+
+          <label for="pass">Mot de passe</label><br> 
+          <input type="text" id="pass" name="pass"  required><br> 
+          
+            <label for="type">Type</label><br> 
+            <select name="type" id="type">
+                <option value="Admin">Admin</option>
+                <option value="User">User</option>
+                <option value="Responsable">Responsable</option>
+            </select>
+
+            <input type="submit" id="ajouter" name="ajouter" value="Ajouter">
+        </form>
+    </div>
+</div>
+<div class="search_box">
+  <input type="text" id="search_input" placeholder="Filtrer...">
+  <button onclick="openPopup()" id="btn_ajouterproduit"><i class='bx bxs-message-alt-add'></i> Ajouter un utilisateur</button>
+</div>
+
+<table id="myTable">
+<thead> 
+  <tr>
+    <th>id</th>
+    <th>Nom d'utilisateur</th>
+    <th>Nom</th>
+    <th>Prénom</th>
+    <th>Admin</th>
+    <th></th>
+    <th></th>
+  </tr>
+</thead>
+<tbody> 
+  {% for u in users %}
+  {% if u.username != 'no_user'%}
+    <tr>
+      <form method=post>
+        {%csrf_token%}
+      <td><input type="text" name="id" value={{u.id}} readonly></td>
+      <td class="produit_name">{{u.username}}</td>
+      <td>{{u.first_name}}</td>
+      <td>{{u.last_name}}</td>
+      <td id="td_quant">{% if u.is_superuser %}<i class='bx bx-check'></i> {% else %} <i class='bx bx-x'></i>  {% endif %}</td>
+      <td><button id="btn_s" type="submit"  value="details"><i class='bx bx-x'></i> Supprimer</button></td> </form>
+    </tr>
+    {%endif%}
+  {% endfor %}  
+
+</tbody> 
+</table>
+
+
+</div>
+
+</div>    
+
+
+
+
+{% endblock content %}
+
+{% block js%}
+<script src="{% static 'app/script.js' %}"></script>
+
+<script>
+function openPopup() {
+    document.getElementById("popup").style.display = "block";
+}
+
+function closePopup() {
+    document.getElementById("popup").style.display = "none";
+}
+</script>
+
+
+{% endblock js %}

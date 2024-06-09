@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content %}
+<div id="popup" class="popup">
+    <div class="popup-content">
+        <span class="close" id="close" onclick="closePopup()">&times;</span>
+        <form method="post">
+            {% csrf_token %}
+           
+          <label for="produit_name">Produit</label><br> 
+          <input type="text" id="produit_name" name="nom"  required><br> 
+          
+    
+    
+          <label for="produit_price"> Prix (da)</label><br> 
+          <input type="number" id="produit_price" name="prix" required><br> 
+
+          <label for="prix_achat"> Prix d'achat (da) (Facultatif)</label><br> 
+          <input value=0 type="number" id="prix_achat" name="prix_achat" step="any" required><br> 
+
+          <label for="select_category">Catégorie</label><br> 
+          <select name="categorie" id="select_category">
+            {% for ct in categories%}
+            {% if ct == produit.categorie %}
+            <option value="{{ct}}" selected>{{ct}}</option>
+            {% else %}
+            <option value="{{ct}}">{{ct}}</option>
+            {% endif %}
+            {%endfor%}
+            </select><br> 
+            <label for="produit_quantity">Quantité</label><br> 
+            <input type="number" id="produit_quantity" name="quantite" required><br> 
+            <label for="produit_min">Quantité minimale obligatoire</label><br> 
+            <input type="number" id="produit_min" name="min" required><br> 
+            <input type="submit" id="ajouter" name="ajouter" value="Ajouter">
+        </form>
+    </div>
+</div>
+<div class="search_box">
+  <input type="text" id="search_input" placeholder="Filtrer...">
+  <button onclick="openPopup()" id="btn_ajouterproduit"><i class='bx bxs-message-alt-add'></i> Ajouter un produit</button>
+</div>
+
+<table id="myTable">
+<thead> 
+  <tr>
+    <th>id</th>
+    <th>Produit</th>
+    <th onclick="sortTableByCategory()">Catégorie</th>
+    <th>Prix</th>
+    <th>Quantité</th>
+    <th>Ajout</th>
+    <th></th>
+    <th></th>
+  </tr>
+</thead>
+<tbody> 
+  {% for produit in produits %}
+    <tr>
+      <form action={{produit.id}}>
+      <td><input type="text" value={{produit.id}} readonly></td>
+      <td class="produit_name">{{produit.nom}}</td>
+      <td>{{produit.categorie}}</td>
+      <td>{{produit.prix | floatformat:2}} Da</td>
+      <td id="td_quant">{{produit.quantite | floatformat:0}}</td>
+      <td id=""><input name="ajout_q" type="number"></td>
+      <td><button type="submit" name="action" value="ajout"><i class='bx bxs-plus-square'></i></button></td>
+      <td><button type="submit" name="action" value="details"><i class='bx bxs-detail'></i> Détails</button></td> </form>
+    </tr>
+    
+  {% endfor %}  
+
+</tbody> 
+</table>
+
+
+</div>
+
+</div>    
+
+
+
+
+{% endblock content %}
+
+{% block js%}
+<script src="{% static 'app/script.js' %}"></script>
+
+<script>
+function openPopup() {
+    document.getElementById("popup").style.display = "block";
+}
+
+function closePopup() {
+    document.getElementById("popup").style.display = "none";
+}
+</script>
+
+
+{% endblock js %}

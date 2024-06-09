@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% load static %}
+
+  {% block title %}
+    <title>Labo</title>
+    {% endblock title %}
+{% block content %}
+<div id="popup" class="popup">
+    <div class="popup-content">
+        <span class="close" id="close" onclick="closePopup()">&times;</span>
+        <form method="post">
+            {% csrf_token %}
+           
+          <label for="element_name">Element</label><br> 
+          <input type="text" id="element_name" name="nom"  required><br> 
+          
+    
+    
+          <label for="element_price"> Prix unitaire (da)</label><br> 
+          <input type="number" id="element_price" value="0"  name="prix" required><br> 
+
+          <label for="element_price_tt"> Prix total (da)</label><br> 
+          <input type="number" id="element_price_tt" value="0" name="prix_tt" required><br> 
+
+            <label for="element_quantity">Quantité</label><br> 
+            <input type="number" id="element_quantity"  name="quantite" step="any" required><br> 
+
+            <label for="produit_min">Quantité minimale obligatoire</label><br> 
+            <input type="number" id="produit_min" name="min" step="any" required><br> 
+
+            <input type="submit" id="ajouter" name="ajouter" value="Ajouter">
+        </form>
+    </div>
+</div>
+<div class="search_box">
+  <input type="text" id="search_input" placeholder="Filtrer...">
+  <button onclick="openPopup()" id="btn_ajouterproduit"><i class='bx bxs-message-alt-add'></i> Ajouter </button>
+</div>
+
+<table id="myTable">
+<thead> 
+  <tr>
+    <th>id</th>
+    <th>Element</th>
+    <th>Prix achat (u)</th>
+    <th>Quantité</th>
+    <th>Ajout</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+</thead>
+<tbody> 
+  {% for element in elements %}
+    <tr>
+      <form action={{element.id}}>
+      <td><input type="text" value={{element.id}} readonly></td>
+      <td class="produit_name">{{element.nom}}</td>
+      <td>{{element.prix_u | floatformat:2}} Da</td>
+      <td id="td_quant">{{element.quantite | floatformat:2}}</td>
+      <td id=""><input name="ajout_q" type="number" step="any"></td>
+      <td><button type="submit" name="action" value="ajout"><i class='bx bxs-plus-square bx-burst-hover'></i></button></td>
+      <td><button id="btn_utiliser"  type="submit" name="action" value="utiliser"><i class='bx bx-message-square-minus bx-burst-hover'></i></button></td>
+      <td><button type="submit" name="action" value="details"><i class='bx bxs-detail'></i> Détails</button></td> </form>
+    </tr>
+    
+  {% endfor %}  
+
+</tbody> 
+</table>
+
+
+</div>
+
+</div>    
+
+
+
+
+{% endblock content %}
+
+{% block js%}
+<script src="{% static 'app/script.js' %}"></script>
+
+<script>
+function openPopup() {
+    document.getElementById("popup").style.display = "block";
+}
+
+function closePopup() {
+    document.getElementById("popup").style.display = "none";
+}
+</script>
+
+
+{% endblock js %}

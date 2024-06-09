@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <link rel="shortcut icon" type="image/x-icon" href="{% static 'app/assets/img/logo/logo.png' %}">    
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  {% if user.is_authenticated %}
+  <meta http-equiv = "refresh" content = "0; url = /dash/" />
+  {% endif %}
+  <link rel="stylesheet" href="{% static 'app/login.css' %}">
+  <title>Login</title>
+</head>
+<body>
+  <div class="login-wrapper">
+    <form method="post" class="form">
+      {% csrf_token %}
+      <img src="{% static 'app/assets/logo.png'%}" alt="">
+      <h2>Connexion</h2>
+      <div class="input-group">
+        <input type="text" name="username" id="loginUser" required>
+        <label for="loginUser">User Name</label>
+      </div>
+      <div class="input-group">
+        <input type="password" name="pass" id="loginPassword" required>
+        <label for="loginPassword">Password</label>
+      </div>
+      <input type="submit" value="Se connecter" class="submit-btn">
+      <h4>{{ message }}</h4>
+    </form>
+
+    
+  </div>
+</body>
+</html>

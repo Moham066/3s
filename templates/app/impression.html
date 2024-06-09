@@ -1,0 +1,183 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{% static 'app/base.css' %}">
+<link rel="stylesheet" href="{% static 'app/impression.css' %}">
+{% endblock stylesheets %}
+   
+{% block title %}
+<title>Impression</title>
+{% endblock title %}
+
+{% block content %} 
+<div class="bg-modal">
+    <div class="modal-contents">
+
+		<div class="close">+</div>
+
+		<form method="post">
+            {% csrf_token %}
+            <label for="nom">Nom:</label>
+			<input type="text" id="article" name="nom" placeholder="Nom a l'impression" maxlength="35" required>
+            <br>
+            <label for="details">Détails:</label>
+            <br>
+            <textarea id="dt" name="details" rows="4" cols="50" required></textarea><br>
+            <br>
+            <label for="bar">Code Bar:</label>
+			<input type="text" id="bar" name="bar" placeholder="Code Bar" value="000000000000" required>
+            <br>
+           	<button type="submit" class="button" name="button"><i class='bx bx-save'></i> Ajouter </button>
+		</form>
+
+	</div></div>
+
+
+
+<div class="selection_bar">
+    <p><i class='bx bxs-printer'></i> Impression </p>  
+</div>
+
+<div class="content_area">
+<button id="button_new"><i class='bx bxs-message-alt-add'></i> Nouveau</button>
+<table id="content_table">
+<thead>
+    <tr>
+        <th>Nom</th>
+        <th id="dt">Détails</th>
+        <th id="qt_t">Code Bar</th>
+        <th id="dt">Expiration</th>
+        <th id="dt">Imp code</th>
+        <th id="detaills_t"></th>
+        <th id="detaills_t"></th>
+        
+    </tr>
+</thead>
+<tbody>
+{% for imp in imps%}
+<tr>
+    <form action={{imp.id}}> 
+    <td class="produit_name">{{imp.nom}}</td>
+    <td class="produit_name" id="details">{{imp.details}}</td>
+    <td id="code" class="code">{{imp.code_bar}}</td>
+    <td><input type="date" name="dt_exp"></td>
+    <td><input type="checkbox" id="imp_code" name="imp_code"></td>
+    <td id="detaills_t"> <button type="submit"><i class='bx bxs-detail'></i> Détails</button> </td> </form>
+    <td><button onclick="printer(this)"><i class='bx bxs-printer'></i> Imprimer</button> </td>  </form>
+
+</tr>  
+
+
+
+{%endfor%}
+
+</tbody>
+
+
+</table>  
+
+
+
+</div>
+
+
+
+
+{%endblock content%}
+
+{% block js%}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> 
+<script>
+document.getElementById('button_new').addEventListener("click", function() {
+document.querySelector('.bg-modal').style.display = "flex";
+});
+
+document.querySelector('.close').addEventListener("click", function() {
+document.querySelector('.bg-modal').style.display = "none";
+});
+</script>
+
+
+<script>
+    // Générer le code-barres avec JsBarcode
+    JsBarcode("#barcode", "456312789456" , {
+        format: "ean13", // Format du code-barres (EAN-13, UPC, etc.)
+        displayValue: true // Masquer la valeur affichée en dessous du code-barres
+    });
+</script>
+
+
+
+<script>
+    function printer(button) {
+        var row = button.closest("tr"); // Trouver la ligne parente du bouton
+        // Récupérer les valeurs
+
+        var checkbox = row.querySelector("#imp_code");
+        var ch = checkbox.checked;
+
+        var nom = row.querySelector(".produit_name").textContent;
+        var dt_exp = row.querySelector("input[name='dt_exp']").value;
+        console.log(ch)
+        if (ch == true) {
+            var bar = row.querySelector(".code").textContent;
+            var barcode = "barcode";
+            } else {
+                var bar = 0;
+                var barcode = "nobar";
+            }
+
+            if (ch == true) {
+              var dt = '';
+            } else {
+              var dt = row.querySelector("#details").textContent; 
+            }            
+            
+        print(nom,dt_exp,bar,dt,barcode);
+        
+    }
+  
+    function print(nom,dt_exp,bar,dt,barcode) {
+        var printWindow = window.open('', '_blank');
+        printWindow.document.open();
+        printWindow.document.write('<html><head><style>.c{  margin-left: 10%; max-width:100%;} body { margin: 0;font-size: 22; font-weight: bold; } p{ margin: 0; padding: 0; max-width : 400px } #nobar{max-height:0px}</style><title>Imprimer</title></head><body>');
+        printWindow.document.write("<div class='c'><p>"+nom+"</p><p> Date d'éxpiration : "+dt_exp+"</p><p>"+dt+"</p>");
+        printWindow.document.write(`<div class="container"><svg id="${barcode}">"</svg> </div> </div>`);
+        var jsBarcodeScript = `
+    <script>document.addEventListener("DOMContentLoaded", function() {
+    console.log("DOMContentLoaded a été déclenché.");    
+    // Créer un élément script
+    var script = document.createElement('script');
+    script.src = "https://cdn.jsdelivr.net/npm/jsbarcode@3.11.0/dist/JsBarcode.all.min.js";
+
+    // Lorsque le script est chargé
+    script.onload = function() {
+        console.log("Button clicked!");
+        // Générer le code-barres avec JsBarcode
+        JsBarcode("#barcode", "${bar}", {
+            format: "ean13", // Format du code-barres (EAN-13, UPC, etc.)
+            displayValue: true // Masquer la valeur affichée en dessous du code-barres
+        });
+    };
+
+    // Ajouter le script au document
+    document.body.appendChild(script);
+});
+    </` + `script>`;
+        if (bar !== 0){
+        printWindow.document.write(jsBarcodeScript);
+    }
+        printWindow.document.write('</body></html>');
+        printWindow.document.close()
+        window.setTimeout(function() {
+          printWindow.print();
+          printWindow.close();
+          
+        }, 50);
+  
+    }
+  </script>
+
+{%endblock js%}

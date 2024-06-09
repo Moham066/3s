@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{% static 'app/single_produit.css' %}">
+<link rel="stylesheet" href="{% static 'app/base.css' %}">
+
+{% endblock stylesheets %}
+
+{% block title %}
+<title>Impression</title>
+{% endblock title %}
+
+            {% block content %}
+                <form method="post">
+                    {% csrf_token %}
+                   
+                  <label for="element_name">Nom</label><br>
+                  <input type="text" id="element_name" name="nom" value="{{imp.nom}}" required><br>
+                  
+            
+            
+                  <label for="details"> Détails </label><br>
+                  <textarea name="details" id="textarea" cols="40" rows="10">{{imp.details}}</textarea>  
+
+                  <br>
+
+                  <label for="bar">Code Bar:</label>
+                  <input type="text" id="bar" name="bar" placeholder="Code Bar" value="{{imp.code_bar}}" required>
+                        <br>
+                                 
+
+                  <input type="hidden" name="id" value="{{imp.id}}" ><br>
+
+                  <input type="submit" id="Sauvegarder" name="Sauvegarder" value="Sauvegarder">
+                  </form>
+                  <form method="post">{% csrf_token %}  
+                    <input type="hidden" name="id" value="{{imp.id}}" >    
+                  <input type="submit" id="Supprimer" name="Supprimer" value="Supprimer">
+                  </form>
+              
+        {% endblock content %}

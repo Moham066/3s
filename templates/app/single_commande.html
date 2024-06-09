@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{% static 'app/single_produit.css' %}">
+<link rel="stylesheet" href="{% static 'app/base.css' %}">
+
+{% endblock stylesheets %}
+
+{% block title %}
+<title>Commandes</title>
+{% endblock title %}
+
+            {% block content %}
+                <form method="post">
+                    {% csrf_token %}
+                   
+                  <label for="designation">Designation</label><br>
+                  <input type="text" id="designation" name="designation" value="{{cmd.designation}}" required><br>
+                  
+                  <label for="client">Client</label><br>
+                  <input type="text" id="client" name="client" value={{cmd.client}} ><br>
+
+            
+                  <label for="prix"> Prix (da)</label><br>
+                  <input type="number" id="prix" name="prix" value={{cmd.prix | floatformat:2 }}  required readonly><br>
+
+                                 
+                    <input type="hidden" name="id" value="{{cmd.id}}" ><br>
+                 
+                  <label for="acompte">Acompte</label><br>
+                  <input type="number" id="acompte" name="acompte" value={{cmd.acompte | floatformat:0}} required readonly><br>
+
+                  <label for="date">Date d'ajout</label><br>
+                  <input type="text" id="date" name="date" value={{cmd.heure|date:"Y-m-d"}}__{{cmd.heure|date:"H:i"}} required readonly><br>
+
+                  <label for="statut">Statut</label><br>
+                  {% if cmd.statut != 'Delivré' %}
+                  <select name="select_statut" id="">
+                  {% for st in status%}
+                  {% if st.0 == cmd.statut %}
+                  <option value="{{st.0}}" selected="selected">{{st.0}}</option>
+                  {% else %}
+                  <option value="{{st.0}}">{{st.0}}</option>
+                  
+                  {% endif %}
+                  {%endfor%}
+                  </select> 
+                  <input type="submit" id="Sauvegarder" name="Sauvegarder" value="Sauvegarder">
+                  {% else %}
+                  <h6 style="color: green;">{{cmd.statut}}</h6>
+                  {% endif %}
+                  
+                 
+                  
+
+                  </form>
+                  <form method="post">{% csrf_token %}  
+                    <input type="hidden" name="id" value="{{element.id}}" >    
+                  <input type="submit" id="Supprimer" name="Supprimer" value="Supprimer">
+                  </form>
+              
+        {% endblock content %}

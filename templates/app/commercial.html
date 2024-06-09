@@ -1,0 +1,245 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{% static 'app/commercial.css' %}">
+{% endblock stylesheets %}
+
+{% block title %}
+<title>Commercial</title>
+{% endblock title %}
+
+{% block content %}
+<div class="left_part">
+
+<div class="search_box">
+  <input type="text" id="search_input" placeholder="Filtrer...">
+  <a href="/commandes/"> <button id="btn_cmds">Commandes</button></a>
+</div>
+
+<table id="myTable">
+<thead> 
+  <tr>
+    
+    <th>Produit</th>
+    <th>Quantité</th>
+    <th>Prix(Da)</th>
+    <th>Ajout</th>
+    <th></th>
+    <th></th>
+  </tr>
+</thead>
+<tbody> 
+  {% for produit in produits %}
+    <tr>
+      
+      <input type="hidden" name="p_id" value={{produit.id}} readonly>
+      <td class="produit_name" id="produit_name">{{produit.nom}}</td>
+      <td>{{produit.quantite | floatformat:0}}</td>
+      <td>{{produit.prix | floatformat:2}}</td>
+      <td id="td_quant"><input id="quant" name="ajout_q" type="number" value="0"></td>
+      <td><button onclick="ajouterInfo(this)" name="action" value="ajout"><i class='bx bxs-plus-square'></i></button></td>
+    </tr>
+    
+  {% endfor %}  
+
+</tbody> 
+</table>
+
+
+</div>
+
+
+
+
+<div id="infoDiv"> 
+    <form id="form_v" method="post">
+        {% csrf_token %}
+    <div id="infoDiv2">
+   
+    <p id="cmd1"><i class='bx bxs-receipt'></i> Commande :</p>
+    # <input type='text' value="Produit" readonly>
+    <input type='text' value="Prix(Da)" readonly>
+    <input type='text' value="Quantité"readonly> <br>
+    </div>
+<p id="total">TOTAL(Da) : </p>
+<input type="text" id="valeur" value="0" readonly>
+</form>
+<button id="confirmation">Confirmer  <i class='bx bxs-cart-add'></i></button>
+<br>
+<a href="/ventes/"><i class='bx bxs-purchase-tag'></i>Liste de ventes</a>
+</div>
+<table id="infoDiv3"></table>
+<div  style="width:100%;text-align: center;justify-content: center;align-items: center;" id="infoDiv4" ><img id="logo_picture" src="{% static 'app/assets/logo_black.png' %}">
+  <p style="font-weight: bold; font-size: 10; text-align: center;">Patisserie Saveur sucrée et salée </p>
+  <p style="font-weight: bold;font-size: 10;text-align: center;">Adresse : Cité Zedma, Béjaia 06000</p>
+  <p style="font-weight: bold;font-size: 10;text-align: center;">Site web : WWW.Patisserie3s.com</p>
+  <p style="font-weight: bold;font-size: 10;text-align: center;">***Merci pour votre visite***</p>
+  <h3 style="text-align: center;">---------------------------------</h3>
+</div>
+
+{% endblock content %}
+
+{% block js%}
+<script src="{% static 'app/script.js' %}"></script>
+
+<script>
+    function ajouterInfo(button) {
+        var tr = button.closest('tr'); // Trouver le tr parent du bouton cliqué
+        var produitNom = tr.querySelector('.produit_name').textContent;
+        var produitCategorie = tr.cells[1].textContent;
+        var produitPrix = tr.cells[2].textContent;
+        var ajoutQuantite = tr.querySelector('input[name="ajout_q"]').value;
+        var pr_id = tr.querySelector('input[name="p_id"]').value;
+        
+        var prix = parseInt(produitPrix);
+        var quantite = parseInt(ajoutQuantite);
+        var tt = prix * quantite ;
+
+        var infoHtml = "<div id='cmd'># <input type='text' value='" + produitNom + "' readonly>" +
+                       "<input name='p_id' class='p_id' type='hidden' value='" + pr_id + "' readonly>" + 
+                       "<input id='prix' name='p_prix' type='text' value='" + produitPrix + "' readonly>" +
+                       "<input id='quantite' name='p_quantite' type='text' value='" + ajoutQuantite + "' required readonly>"+
+                       "<input type='button' class='remove-field' name='remove-field' id='remove-field' value='X' ></div>";
+        var infotext = "<tr>"+"<td>"+ produitNom + "</td>" + "<td>"+ produitPrix + "Da </td>" + "<td> *"+ ajoutQuantite + "</td>" + "</tr>";
+        
+        document.getElementById('infoDiv2').innerHTML += infoHtml;
+        var champValeur = document.getElementById('valeur');
+        var valeurActuelle = parseInt(champValeur.value);
+        var nouvelleValeur = valeurActuelle + tt;
+        champValeur.value = nouvelleValeur;
+
+
+    }
+$(document).on("click", "#remove-field", function(){
+ 
+  // Récupérer la valeur de l'input à l'intérieur du div par son ID
+  var v1 = $(this).closest('div#cmd').find('input#prix').val();
+  var v2 = $(this).closest('div#cmd').find('input#quantite').val();  
+    // Récupérer la valeur de #other-input
+    var total = $('#valeur').val();
+    var v3 = parseInt(v1) * parseInt(v2);
+    // Décrémenter la valeur de #other-input par la valeur récupérée
+    var newValue = parseInt(total) - parseInt(v3);
+    
+    // Affecter la nouvelle valeur à #other-input
+    $('#valeur').val(newValue);
+
+    $(this).parent('div').remove();
+ });;
+
+; 
+    </script>
+
+<script>
+  document.getElementById("confirmation").addEventListener("click", function() {
+      // Sélectionnez tous les éléments div avec l'ID 'cmd'
+      const divs = document.querySelectorAll('#cmd');
+      console.log(divs)
+      // Créez un tableau pour stocker les lignes du tableau
+      let rows = [];
+
+      // Parcourez chaque div
+      divs.forEach(div => {
+          // Récupérez les valeurs des éléments input
+          const produitNom = div.querySelector('input[type="text"][value]').value;
+          const produitPrix = parseFloat(div.querySelector('#prix').value).toFixed(2);
+          const ajoutQuantite = parseInt(div.querySelector('#quantite').value);
+
+          // Créez une chaîne de caractères pour chaque ligne de tableau
+          const row = `<tr><td>${produitNom}</td><td>${produitPrix} Da</td><td>* ${ajoutQuantite}</td></tr>`;
+          
+          // Ajoutez cette ligne au tableau
+          rows.push(row);
+      });
+
+      // Joignez toutes les lignes du tableau en une seule chaîne
+      const tableRows = rows.join('');
+
+      // Insérez les lignes du tableau dans un élément de tableau existant avec l'ID 'table'
+      document.getElementById('infoDiv3').innerHTML = tableRows;
+
+
+      var printContent = document.getElementById("infoDiv3").innerHTML;
+      var tt = document.getElementById("valeur");
+      var t = tt.value
+      var logo = document.getElementById("infoDiv4").innerHTML;
+      var dateActuelle = new Date();
+var annee = dateActuelle.getFullYear();
+var mois = dateActuelle.getMonth() + 1; // Les mois commencent à 0, donc nous ajoutons 1
+var jour = dateActuelle.getDate();
+var heure = dateActuelle.getHours();
+var minutes = dateActuelle.getMinutes();
+var secondes = dateActuelle.getSeconds();
+
+// Formatage de l'heure pour avoir deux chiffres, par exemple 09:05:03
+heure = (heure < 10 ? "0" : "") + heure;
+minutes = (minutes < 10 ? "0" : "") + minutes;
+secondes = (secondes < 10 ? "0" : "") + secondes;
+
+var date = "Le "+jour+"/"+mois+"/"+annee+" à "+heure+":"+minutes+":"+secondes;
+
+      var inputs = document.getElementsByClassName('p_id');
+      var values = [];
+    
+      // Récupérer les valeurs des inputs
+      for (var i = 0; i < inputs.length; i++) {
+        values.push(inputs[i].value);
+       }
+
+       // Vérifier les doublons
+      var doublons = false;
+      for (var i = 0; i < values.length; i++) {
+         for (var j = i + 1; j < values.length; j++) {
+              if (values[i] === values[j]) {
+                  doublons = true;
+                  break;
+              }
+          }
+        if (doublons) {
+            break;
+        }
+    }
+
+    // Afficher le résultat
+    if (isNaN(t)) {
+      alert('Erreur !');
+    }else{
+
+    if (doublons) {
+        alert('Il y a des doublons dans la liste !');
+    } else {
+        print(printContent,t,logo,date);
+    }
+  }
+
+  });
+
+  function print(content,t,logo,date) {
+      var form = document.getElementById("form_v");
+      
+      var printWindow = window.open('', '_blank');
+      printWindow.document.open();
+      printWindow.document.write('<html><head><style>#logo_picture {max-width: 200px; max-height: 50px ; } ;table { overflow : hidden;max-width : 300px;border-collapse: collapse; margin-bottom: 5px; } th { text-align: left; border-bottom: 2px solid black; } td { padding: 8px; text-align: left; border-bottom: 2px solid black; } body{ font-size: 20;}</style><title>Imprimer</title></head><bodystyle="margin: 0; display: flex; justify-content: center; align-items: center;">');
+      printWindow.document.write(logo);
+      printWindow.document.write("<p>"+date+"</p>");
+      printWindow.document.write('<table> <thead> <tr> <th>Produit</th> <th>Prix (Da)</th> <th>Quantité</th> </tr> </thead> <tbody>');
+      printWindow.document.write(content);
+      printWindow.document.write("</tbody></table><br><h3>TOTAL : "+t+".00 Da</h3><br>");
+      printWindow.document.write('</body></html>');
+      printWindow.document.close()
+      window.setTimeout(function() {
+        printWindow.print();
+        if (form.checkValidity()) {
+        form.submit(); // Submit the form if it's valid
+        } else {
+        alert("Erreur dans la saisie."); // Show an error message if any required field is missing
+        }
+        printWindow.close();
+      }, 500); 
+
+  }
+</script>
+
+
+{% endblock js %}

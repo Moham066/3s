@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{% static 'app/base.css' %}">
+<link rel="stylesheet" href="{% static 'app/gain_reports.css' %}">
+{% endblock stylesheets %}
+
+
+
+
+{% block title %}
+<title>Gains</title>
+{% endblock title %}
+
+{% block content %} 
+
+
+<div class="selection_bar">
+    <p><i class='bx bx-up-arrow-circle'></i>Gains</p>  
+</div>
+
+<div class="content_area">
+<div class="filtre">
+    <form method="post">
+        {%csrf_token%}
+        <label for="categorie">Séléctionnez la catégorie : </label><br>
+        <select name="categorie" id="categorie">
+        {% for c in categories %}   
+        <option value="{{c}}">{{c}}</option>
+        {%endfor%}
+        <option value="Commandes">Commandes</option>
+        </select><br>
+        <label for="date_de">Appartir de : </label><br>
+        <input type="date" name="date_de" id="date_de" required><br>
+        <label for="date_a"> Jusqu'a : </label><br>
+        <input type="date" name="date_a" id="date_a" required> 
+        <button type="submit" id="filtrer" name="filtrer">Filtrer</button>
+    </form>
+</div>
+{% if date_de %}<p style="font-weight: bold; text-align: center;">Du : <span style="color: blue ;">{{date_de}}</span> Au :  <span style="color: blue ;">{{date_a}}</span></p>{%endif%}
+{% if bénef %}<p style="text-align: center;margin-top: 5px;"> Bénéfices : {% if bénef > 0 %}<span style="color: green ; font-weight: bold;text-align: center;">{{bénef | floatformat:2}} Da</span>{%else%}<span style="color: red ; font-weight: bold;text-align: center;">{{bénef | floatformat:2}} Da</span>{%endif%}</p>{%endif%}
+
+ <div class="report">
+    {% if gain %}
+    <table>
+        <tr>
+            <td><i id="green_color" class='bx bx-up-arrow-circle'></i> Gains</td>
+            <td><span id="green_color">{{gain | floatformat:2 }} Da</span></td>
+        </tr>
+        <tr>
+            <td>Articles vendus</td>
+            <td>{{vendu}} Articles</td>
+        </tr>
+        {% for c in cmd_stat %}
+        <tr>
+            <td>{{c.produit.nom}}</td>
+            <td>{{c.quantite}}</td>
+        </tr>
+        {%endfor%}
+    </table>
+    {% endif %}
+ </div>
+
+</div>
+
+
+
+
+{%endblock content%}
+
+{% block js%}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> 
+<script>
+document.getElementById('button_new').addEventListener("click", function() {
+document.querySelector('.bg-modal').style.display = "flex";
+});
+
+document.querySelector('.close').addEventListener("click", function() {
+document.querySelector('.bg-modal').style.display = "none";
+});
+
+function ajout_produits() {
+ 
+ var e = document.getElementById("select_products");
+ var value=e.options[e.selectedIndex].text;
+ var v=e.options[e.selectedIndex].value;
+ var d = document.getElementById("quantity");
+ var val = d.value
+ html='<div class="inpt">\
+         <input type="text" name="pruduct_item" id="pruduct_item" value="'+value+'">\
+         <input type="number" name="item_quantity" id="item_quantity" value="'+val+'">\
+         <input type="hidden" name="item_id" id="item_id" value="'+v+'">\
+         <input type="button" class="remove-field" name="remove-field" id="remove-field" value="X" ">\
+     </div> '
+ 
+ var form = document.getElementById("the_div");
+ form.innerHTML += html;
+ 
+}
+
+ $(document).on("click", "#remove-field", function(){
+ $(this).parent('div').remove();
+ });;
+
+; 
+
+
+
+
+   </script>
+{%endblock js%}

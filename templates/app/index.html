@@ -1,0 +1,461 @@
+﻿{% load static %}
+<!doctype html>
+<html class="no-js" lang="zxx">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>Saveur, Sucrée & Salée </title>
+<meta name="description" content>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="shortcut icon" type="image/x-icon" href="{% static 'app/assets/img/logo/logo.png' %}">
+
+<link rel="stylesheet" href="{% static 'app/assets/css/bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'app/assets/css/owl.carousel.min.css' %}">
+<link rel="stylesheet" href="{% static 'app/assets/css/slicknav.css' %}">
+<link rel="stylesheet" href="{% static 'app/assets/css/animate.min.css' %}">
+<link rel="stylesheet" href="{% static 'app/assets/css/magnific-popup.css' %}">
+<link rel="stylesheet" href="{% static 'app/assets/css/fontawesome-all.min.css' %}">
+<link rel="stylesheet" href="{% static 'app/assets/css/themify-icons.css' %}">
+<link rel="stylesheet" href="{% static 'app/assets/css/slick.css' %}">
+<link rel="stylesheet" href="{% static 'app/assets/css/nice-select.css' %}">
+<link rel="stylesheet" href="{% static 'app/assets/css/style.css' %}">
+<script nonce="7e4ca3bb-7598-4067-80d1-2cfdaabad2dc">try{(function(w,d){!function(o,p,q,r){o[q]=o[q]||{};o[q].executed=[];o.zaraz={deferred:[],listeners:[]};o.zaraz.q=[];o.zaraz._f=function(s){return async function(){var t=Array.prototype.slice.call(arguments);o.zaraz.q.push({m:s,a:t})}};for(const u of["track","set","debug"])o.zaraz[u]=o.zaraz._f(u);o.zaraz.init=()=>{var v=p.getElementsByTagName(r)[0],w=p.createElement(r),x=p.getElementsByTagName("title")[0];x&&(o[q].t=p.getElementsByTagName("title")[0].text);o[q].x=Math.random();o[q].w=o.screen.width;o[q].h=o.screen.height;o[q].j=o.innerHeight;o[q].e=o.innerWidth;o[q].l=o.location.href;o[q].r=p.referrer;o[q].k=o.screen.colorDepth;o[q].n=p.characterSet;o[q].o=(new Date).getTimezoneOffset();if(o.dataLayer)for(const B of Object.entries(Object.entries(dataLayer).reduce(((C,D)=>({...C[1],...D[1]})),{})))zaraz.set(B[0],B[1],{scope:"page"});o[q].q=[];for(;o.zaraz.q.length;){const E=o.zaraz.q.shift();o[q].q.push(E)}w.defer=!0;for(const F of[localStorage,sessionStorage])Object.keys(F||{}).filter((H=>H.startsWith("_zaraz_"))).forEach((G=>{try{o[q]["z_"+G.slice(7)]=JSON.parse(F.getItem(G))}catch{o[q]["z_"+G.slice(7)]=F.getItem(G)}}));w.referrerPolicy="origin";w.src="/cdn-cgi/zaraz/s.js?z="+btoa(encodeURIComponent(JSON.stringify(o[q])));v.parentNode.insertBefore(w,v)};["complete","interactive"].includes(p.readyState)?zaraz.init():o.addEventListener("DOMContentLoaded",zaraz.init)}(w,d,"zarazData","script");})(window,document)}catch(e){throw fetch("/cdn-cgi/zaraz/t"),e;};</script></head>
+<body class="body-bg">
+<header>
+<div class="header-area">
+<div class="main-header ">
+<div class="header-top">
+<div class="container-fluid">
+<div class="row">
+<div class="col-xl-12">
+<div class="d-flex justify-content-between flex-wrap align-items-center">
+
+<div class="logo">
+<a href="/"><img src="{% static 'app/assets/img/logo/logo.png' %}" alt></a>
+</div>
+<div class="header-info-right d-none d-lg-block">
+<a href="tel:+213 664 645 778" class="btn_2">APPELLEZ-NOUS</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="header-bottom  header-sticky">
+<div class="container-fluid">
+<div class="row justify-content-center">
+<div class="col-xl-12">
+
+<div class="main-menu d-none d-lg-block text-center">
+<nav>
+<ul id="navigation">
+<li><a href="/">ACCUEIL</a></li>
+<li><a href="#row">gâteau</a></li>
+<li><a href="#offres">Sandwich</a></li>
+<li><a href="#propos">à propos</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+
+<div class="col-12">
+<div class="mobile_menu d-block d-lg-none"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</header>
+<main>
+
+<div class="slider-area">
+<div class="slider-active">
+<div class="single-slider slider-height slider-bg1 d-flex align-items-center">
+<div class="container">
+<div class="row">
+<div class="col-xxl-6 col-xl-7 col-lg-8 col-md-8 col-sm-10">
+<div class="hero-caption">
+<h1 data-animation="fadeInUp" data-delay=".2s">Dégustez notre gâteau délicieux et sain, un plaisir irrésistible pour votre bien-être !</h1>
+<a href="tel:+213 664 645 778" class="btn_1 hero-btn" data-animation="fadeInUp" data-delay=".8s">Commandez maintenant</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+ 
+<section class="about-area top-padding" id="propos">
+    <div class="container">
+    <div class="row justify-content-center">
+    <div class="col-xl-6 col-lg-7 col-md-9">
+    <div class="section-tittle text-center line mb-70">
+    <h2>Qui sommes-nous ? </h2>
+    </div>
+    </div>
+    </div>
+    <div class="row align-items-center section-overlay">
+    <div class="offset-xl-1 col-xxl-5 col-xl-6 col-lg-6 col-md-9">
+    <div class="about-caption about-caption1">
+    
+    <div class="section-tittle section-tittle3 mb-25">
+    <h2> Découvrez la saveur, sucrée & salée !</h2>
+    <p>Vous cherchez à impressionner lors de votre prochain événement ? Que ce soit un anniversaire, une fête d'entreprise ou simplement une envie soudaine de gourmandise, notre large sélection de gâteaux personnalisés est là pour répondre à tous vos besoins ! Avec notre expertise inégalée et notre engagement envers la satisfaction client, nous sommes fiers de vous offrir une expérience de commande en ligne simple et rapide.</p>
+    <p>Nous croyons fermement que chaque événement mérite d'être célébré avec style et délicatesse, et c'est pourquoi nous mettons tout en œuvre pour créer des gâteaux qui non seulement émerveilleront vos papilles, mais aussi ajouteront une touche spéciale à votre occasion spéciale.</p>
+    </div>
+    </div>
+    </div>
+    <div class="col-xxl-5 col-xl-5 col-lg-6 col-md-8">
+    
+    <div class="about-img about-img1  ">
+ <a href="https://maps.app.goo.gl/mEGT7KAMnTg2GTXVA">
+    <img src="{% static 'app/assets/img/gallery/about1.jpg' %}" alt="saveur,sucrée & salée"></a>
+    </div>
+    </div>
+    </div>
+    </div>
+    </section>
+    
+    
+    <!--section class="latest-items section-padding fix" id="gateau">
+   
+   <div class="slider" x-data="{start: true, end: false}">
+     <div class="slider__content" x-ref="slider" x-on:scroll.debounce="$refs.slider.scrollLeft == 0 ? start = true : start = false; Math.abs(($refs.slider.scrollWidth - $refs.slider.offsetWidth) - $refs.slider.scrollLeft) < 5 ? end = true : end = false;">
+       <div class="slider__item">
+         <img class="slider__image" src="{% static 'app/assets/img/gallery/slid1.jpg' %}" alt="Image">
+         <div class="slider__info">
+           <h2>This is a card</h2>
+         </div>
+       </div>
+       <div class="slider__item">
+         <img class="slider__image" src="{% static 'app/assets/img/gallery/slide 5.jpg' %}"alt="Image">
+         <div class="slider__info">
+           <h2>This is a card</h2>
+         </div>
+       </div>
+       <div class="slider__item">
+         <img class="slider__image" src="{% static 'app/assets/img/gallery/slide3.jpg' %}" alt="Image">
+         <div class="slider__info">
+           <h2>This is a card</h2>
+         </div>
+       </div>
+       <div class="slider__item">
+         <img class="slider__image" src="{% static 'app/assets/img/gallery/slide4.jpg' %}" alt="Image">
+        
+       </div>
+       <div class="slider__item" id="1">
+         <img class="slider__image" src="{% static 'app/assets/img/gallery/slid2.jpg' %}"  alt="Image">
+         <div class="slider__info">
+           <h2>This is a card</h2>
+         </div>
+       </div>
+       <div class="slider__item">
+         <img class="slider__image" src="{% static 'app/assets/img/gallery/slide5.jpg' %}" alt="Image">
+         <div class="slider__info">
+           <h2>This is a card</h2>
+         </div>
+       </div>
+       <div class="slider__item">
+         <img class="slider__image" src="{% static 'app/assets/img/gallery/slide 6.jpg' %}" alt="Image">
+         <div class="slider__info">
+           <h2>This is a card</h2>
+         </div>
+       </div>
+       
+       </div>
+     </div>
+   
+   </div>
+  </section >  ---->
+
+    <div class="video-area">
+    <div class="container">
+    <div class="video-wrap position-relative section-bg2 d-flex align-items-center" data-background="{% static 'app/assets/img/gallery/logo.png' %}" style="background-image: url(&quot;"{% static 'app/assets/img/gallery/logo.png' %}"&quot;);">
+    
+    <div class="video-icon">
+    <a class="popup-video btn-icon" href="https://www.youtube.com/watch?v=RdvHR5bp3lE"><i class="fas fa-play"></i></a>
+    </div>
+    </div>
+    </div>
+    </div>
+    
+    
+    <section class="customer-section section-padding">
+    <div class="container">
+    <div class="row justify-content-center">
+    <div class="col-xl-6 col-lg-7 col-md-7">
+    
+    <div class="section-tittle  text-center mb-50">
+    <h2>Paroles sucrées de nos clients satisfaits</h2>
+    </div>
+    </div>
+    </div>
+    <div class="row">
+    <div class="col-lg-4 col-md-4 col-sm-6 p-0">
+    <div class="single-cat mb-30">
+    <div class="cat-cap">
+    
+    <p>"Je suis tellement heureux d'avoir choisi votre pâtisserie ! Vous avez vraiment dépassé toutes mes attentes.</p>
+    </div>
+    <div class="cat-img">
+    <img src="{% static 'app/assets/img/gallery/customer1.png' %}" alt="">
+    <p>Celine Abd</p>
+    </div>
+    </div>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-6 p-0">
+    <div class="single-cat mb-30">
+    <div class="cat-cap">
+    
+    <p>"Je suis tellement reconnaissant pour la qualité de votre pâtisserie. C'est exactement ce dont j'avais besoin.</p>
+    </div>
+    <div class="cat-img">
+    <img src="{% static 'app/assets/img/gallery/customer2.png' %}" alt="">
+    <p>Samira Ben</p>
+    </div>
+    </div>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-6 p-0">
+    <div class="single-cat mb-30">
+    <div class="cat-cap">
+    
+    <p>"Votre attention aux détails et votre service client exceptionnel font toute la différence. Votre pâtisserie est vraiment exceptionnel "</p>
+    </div>
+    <div class="cat-img">
+    <img src="{% static 'app/assets/img/gallery/customer3.png' %}" alt="">
+    <p>Sarah Tab</p>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </section>
+    
+<section id="offres">
+<div class="h1-blog">
+<div class="container">
+<div class="row justify-content-center">
+<div class="col-xl-12">
+
+<div class="section-tittle  text-center mb-50">
+<h2> Nos Sandwichs</h2>
+
+</div>
+</div>
+</div>
+</div>
+<div class="container-fluid">
+<div class="row">
+<div class="col-xl-6 ml-12 ml-12">
+<div class="single-services mb-30 mr-10">
+<div class="row no-gutters">
+<div class="col-xl-6 col-lg-6 col-md-6 p-0">
+<div class="features-img">
+<img src="{% static 'app/assets/img/gallery/blog1.jpg' %}" alt>
+</div>
+</div>
+<div class="col-xl-6 col-lg-6 col-md-6 p-0">
+<div class="features-caption">
+<h3>Découvrez l'irrésistible saveur de notre panini gourmet</h3>
+<p>Plongez dans une expérience gustative incomparable en dégustant notre panini gourmet, soigneusement préparé avec des ingrédients de la plus haute qualité. <br> Chaque bouchée vous transporte dans un monde de délices, où la fraîcheur des légumes se marie parfaitement avec la tendreté de la viande et la douceur du fromage, le tout enveloppé dans un pain moelleux et doré.</p>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="col-xl-6 mr-12 mr-12">
+<div class="single-services mb-30 ml-10">
+<div class="row no-gutters">
+<div class="col-xl-6 col-lg-6 col-md-6 p-0">
+<div class="features-img">
+<img src="{% static 'app/assets/img/gallery/blog2.jpg' %}" alt>
+</div>
+</div>
+<div class="col-xl-6 col-lg-6 col-md-6 p-0">
+<div class="features-caption">
+<h3>Laissez-vous tenter par la simplicité raffinée de notre club sandwich au pain de mie </h3>
+<p>Avec sa texture moelleuse et légère, le pain de mie offre une toile de fond parfaite pour mettre en valeur les saveurs délicates de nos ingrédients de qualité supérieure. Chaque bouchée est une expérience de pure satisfaction, où le croquant des légumes frais, la tendresse de la viande et la douceur du fromage se marient harmonieusement pour créer un festin pour les sens. </p>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<div class="instragram top-padding">
+<div class="container">
+<div class="row justify-content-center">
+<div class="col-xl-6 col-lg-7 col-md-7 ">
+
+<div class="section-tittle  text-center mb-70">
+<h2> Abonnez-vous sur instagram</h2>
+<a href="https://www.instagram.com/patisserie_3s/" class="btn_02 btn_02s mt-25"><i class="fab fa-instagram"></i>Instagram</a>
+</div>
+</div>
+</div>
+<div class="row" id="row">
+<div class="col-lg-3 col-md-6 col-sm-6">
+<div class="instra-img mb-30">
+<a href="#"><img src="{% static 'app/assets/img/gallery/instra1.jpg' %}" alt class="w-100"></a>
+</div>
+</div>
+<div class="col-lg-3 col-md-6 col-sm-6">
+<div class="instra-img mb-30">
+<a href="#"><img src="{% static 'app/assets/img/gallery/instra2.jpg' %}" alt class="w-100"></a>
+</div>
+</div>
+<div class="col-lg-3 col-md-6 col-sm-6">
+<div class="instra-img mb-30">
+<a href="#"><img src="{% static 'app/assets/img/gallery/instra3.jpg' %}" alt class="w-100"></a>
+</div>
+</div>
+<div class="col-lg-3 col-md-6 col-sm-6">
+<div class="instra-img mb-30">
+<a href="#"><img src="{% static 'app/assets/img/gallery/instra4.jpg' %}" alt class="w-100"></a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<footer id="contact">
+<div class="footer-wrapper">
+<div class="footer-area footer-padding">
+<div class="container">
+<div class="row">
+<div class="col-lg-12">
+<div class="footer-menu d-flex justify-content-between flex-wrap">
+<div class="logo">
+<img src="{% static 'app/assets/img/logo/logo.png' %}" alt>
+</div>
+<nav>
+<ul>
+<li><a href="/">ACCUEIL</a></li>
+<li><a href="#row">gâteau</a></li>
+<li><a href="#offres">Sandwich</a></li>
+<li><a href="#propos">à propos</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="row justify-content-between">
+<div class="col-xxl-5 col-xl-6 col-lg-6 col-md-10">
+<div class="single-footer-caption mb-50">
+<div class="single-footer-caption mb-30">
+<div class="footer-tittle">
+<div class="footer-pera">
+<p>
+Suivez-nous pour ne rien manquer de nos dernières créations et pour découvrir en avant-première nos offres exclusives ! Retrouvez-nous sur Facebook pour des actualités et des promotions excitantes, sur Instagram pour des photos appétissantes de nos gâteaux et sur YouTube pour des vidéos captivantes de nos réalisations culinaires. Rejoignez notre communauté gourmande dès aujourd'hui!</p>
+</div>
+</div>
+
+<div class="socila mt-50">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <a href="https://www.instagram.com/patisserie_3s/" class="btn_02 btn_02s mt-25"><i class="fab fa-instagram"></i>Instagram</a>
+    <a href="https://www.facebook.com/profile.php?id=61553959236320" class="btn_02 btn_02s mt-25"><i class="fab fa-facebook-f"></i>Facebook</a>
+    <a href="https://www.youtube.com/channel/UCCvg83XcNI37I-eq7sVtGow" class="btn_02 btn_02s mt-25"><i class="fab fa-youtube"></i>YouTube</a>
+</div>
+</div>
+</div>
+</div>
+<div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
+<div class="single-footer-caption mb-50">
+<div class="footer-tittle">
+<img src="{% static 'app/assets/img/icon/location.svg' %}" alt>
+<h4>Lieu</h4>
+<ul>
+<li>
+<p>Cité Zedma, en face jardin pépinière Bejaia-06000 Algerie</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-xl-2 col-lg-2 col-md-4 col-sm-6">
+<div class="single-footer-caption mb-50">
+<div class="footer-tittle">
+<img src="{% static 'app/assets/img/icon/phone.svg' %}" alt>
+<h4>Contact</h4>
+<ul>
+<li><a href="#">+213 664 645 778</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="footer-bottom-area">
+<div class="container">
+<div class="footer-border">
+<div class="row">
+<div class="col-xl-12 ">
+<div class="footer-copy-right text-center">
+<p>Copyright &copy;<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>document.write(new Date().getFullYear());</script> tous les droits sont réservés développé par <a href="mailto:mabed.tech@gmail.com">MABED_TECH</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</footer>
+
+<div id="back-top">
+<a class="wrapper" title="Go to Top" href="#">
+<div class="arrows-container">
+<div class="arrow arrow-one">
+</div>
+<div class="arrow arrow-two">
+</div>
+</div>
+</a>
+</div>
+
+
+<script src="{% static 'app/assets/js/vendor/modernizr-3.5.0.min.js' %}"></script>
+<script src="{% static 'app/assets/js/vendor/jquery-1.12.4.min.js' %}"></script>
+<script src="{% static 'app/assets/js/popper.min.js' %}"></script>
+<script src="{% static 'app/assets/js/bootstrap.min.js' %}"></script>
+
+<script src="{% static 'app/assets/js/owl.carousel.min.js' %}"></script>
+<script src="{% static 'app/assets/js/slick.min.js' %}"></script>
+<script src="{% static 'app/assets/js/jquery.slicknav.min.js' %}"></script>
+
+<script src="{% static 'app/assets/js/wow.min.js' %}"></script>
+<script src="{% static 'app/assets/js/jquery.magnific-popup.js' %}"></script>
+<script src="{% static 'app/assets/js/jquery.nice-select.min.js' %}"></script>
+<script src="{% static 'app/assets/js/jquery.counterup.min.js' %}"></script>
+<script src="{% static 'app/assets/js/waypoints.min.js' %}"></script>
+
+<script src="{% static 'app/assets/js/contact.js' %}"></script>
+<script src="{% static 'app/assets/js/jquery.form.js' %}"></script>
+<script src="{% static 'app/assets/js/jquery.validate.min.js' %}"></script>
+<script src="{% static 'app/assets/js/mail-script.js' %}"></script>
+<script src="{% static 'app/assets/js/jquery.ajaxchimp.min.js' %}"></script>
+
+<script src="{% static 'app/assets/js/plugins.js' %}"></script>
+<script src="{% static 'app/assets/js/main.js' %}"></script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+<script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-23581568-13');
+    </script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v84a3a4012de94ce1a686ba8c167c359c1696973893317" integrity="sha512-euoFGowhlaLqXsPWQ48qSkBSCFs3DPRyiwVu3FjR96cMPx+Fr+gpWRhIafcHwqwCqWS42RZhIudOvEI+Ckf6MA==" data-cf-beacon='{"rayId":"853448751e3da85f","version":"2024.2.0","token":"cd0b4b3a733644fc843ef0b185f98241"}' crossorigin="anonymous"></script>
+</body>
+</html>

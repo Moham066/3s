@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{% static 'app/single_produit.css' %}">
+<link rel="stylesheet" href="{% static 'app/base.css' %}">
+
+{% endblock stylesheets %}
+
+{% block title %}
+<title>Labo</title>
+{% endblock title %}
+
+            {% block content %}
+                <form method="post">
+                    {% csrf_token %}
+                   
+                  <label for="element_name">Element</label><br>
+                  <input type="text" id="element_name" name="nom" value="{{element.nom}}" required><br>
+                  
+            
+            
+                  <label for="element_price"> Prix unitaire (da)</label><br>
+                  <input type="number" id="element_price" name="prix" value={{element.prix_u | floatformat:2 }}  required><br>
+
+                                 
+
+                 
+                  <label for="element_quantity">Quantité</label><br>
+                  <input type="number" id="element_quantity" name="quantite" value={{element.quantite | floatformat:2}} step="any" required><br>
+                  
+                   <label for="quantite_m">Quantité minimale</label><br>
+                  <input type="number" id="quantite_m" name="quantite_m" value={{element.minimum | floatformat:2}} step="any" required><br>
+
+                  <label for="element_utilise">Utilisé</label><br>
+                  <input type="number" id="element_quantity" value={{element.utilise | floatformat:0}} readonly><br>
+
+                  <input type="hidden" name="id" value="{{element.id}}" ><br>
+
+                  <input type="submit" id="Sauvegarder" name="Sauvegarder" value="Sauvegarder">
+                  </form>
+                  <form method="post">{% csrf_token %}  
+                    <input type="hidden" name="id" value="{{element.id}}" >    
+                  <input type="submit" id="Supprimer" name="Supprimer" value="Supprimer">
+                  </form>
+              
+        {% endblock content %}

@@ -1,0 +1,95 @@
+
+
+.selection_bar{
+    width: 100%;
+    height: 50px;
+    background:#C6CBEF ;
+    display: inline-block;
+    vertical-align:middle;
+    text-align: end;
+    overflow-y: hidden ;
+    
+    }
+    
+    .selection_bar p{
+        text-align: left;
+        width: 20%; 
+        display: inline-block;  
+        margin: 0px; 
+        margin-right: 78%;
+        margin-top: 5px;
+        font-weight: bold;
+    }
+    
+
+    
+
+    
+    .content_area{
+        margin: 10px 20px;
+        width: 96%;
+        height: 500px;
+        background:#C6CBEF ;
+        scrollbar-width: none;
+        overflow: scroll;
+        display: flex;
+    
+    }
+
+    .content_area .filtre{
+        display: inline;
+        margin-left: 5px;
+        width: 48%;
+
+    }
+
+    .content_area .report{
+
+        width: 48%;
+    }
+
+
+    .content_area .filtre form{
+        display: inline;
+    }
+    
+    #filtrer{
+        display: inline-block;
+        padding: 10px 20px;
+        background:#0d568b ;
+        color: black; 
+        border: 0px;   
+        
+    }
+
+   
+    
+
+  
+    
+      
+    
+    
+    table {
+        border: 1px solid;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th, td {
+        padding: 0px;
+        text-align: left;
+        border: 1px solid;
+    }
+
+
+    th {
+        background-color: #4CAF50;
+        color: white;
+    }
+
+    #green_color{
+        color: green;
+        font-weight: bold;
+
+    }

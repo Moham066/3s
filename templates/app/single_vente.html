@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{% static 'app/base.css' %}">
+<link rel="stylesheet" href="{% static 'app/single_vente.css' %}">
+{% endblock stylesheets %}
+   
+{% block title %}
+<title>Vente</title>
+{% endblock title %}
+
+{% block content %} 
+<div class="content_area">
+<form method="post">
+    {%csrf_token%}
+{%for v in vente%}
+
+<label for="date">Date</label>
+<input type="text" name="date" id="date" value="{{v.date_commande}} {{v.heure|time:'H:i'}}">
+<br>
+<label for="prix">Montant</label>
+<input type="text" name="prix" id="prix" value={{v.tt_prix | floatformat:2}}_DA >
+<br>
+<label for="prix">Produits : </label>
+{% for c in v.commandes.all%}
+<p id="p_produits">Produit : {{c.produit.nom}} --> Quantité : {{c.quantite}} </p>
+{%endfor%}
+<br>
+<label for="par">Par : </label>
+<input type="text" name="par" id="par" value={{v.by}}>
+<br>
+
+
+
+{%endfor%}
+</form>
+</div>
+
+
+
+{% endblock content%}

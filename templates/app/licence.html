@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load static %}
+
+  {% block title %}
+    <title>Expiré</title>
+    {% endblock title %}
+{% block content %}
+<script>
+    // Fonction pour afficher une alerte
+    function showAlert() {
+        alert("Cette version a expiré. Veuillez contacter les développeurs !");
+        // Récursivité pour réafficher l'alerte
+    }
+
+    // Appeler la fonction showAlert dès que la page est chargée
+    window.onload = function() {
+         alert("Cette version a expiré. Veuillez contacter les développeurs !");
+    };
+</script>
+{% endblock content%}
